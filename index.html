@@ -79,18 +79,21 @@
     </div>
   </div>
 
-  <!-- ===== FIREBASE (la nube) ===== -->
-  https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js
-
-  <!-- ===== MODULOS DE LA APP (en orden) ===== -->
-  js/firebase.js
-  <script src="js/db.js"></script>
-  <script src="js/pedidos.js"></script>
-  <script src="js/productos.js"></script>
-  <script src="js/clientes.js"></script>
-  <script src="js/reportes.js"></script>
-  js/backup.js
-  <script src="js/app.js"></script>
+  <!-- ===== CARGAMOS FIREBASE Y LOS MODULOS EN ORDEN ===== -->
+  <script>
+    // 1) Primero cargamos Firebase (la nube), luego nuestros modulos.
+    var libsFirebase = [
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js",
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"
+    ];
+    var modulosApp = [
+      "js/firebase.js", "js/db.js", "js/pedidos.js", "js/productos.js",
+      "js/clientes.js", "js/reportes.js", "js/backup.js", "js/app.js"
+    ];
+    var todos = libsFirebase.concat(modulosApp);
+    todos.forEach(function (src) {
+      document.write('<scr' + 'ipt src="' + src + '"><\/scr' + 'ipt>');
+    });
+  </script>
 </body>
 </html>
