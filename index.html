@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AREPOTASCON- Gestion de Pedidos</title>
+  <title>AREPOTASCON - Gestion de Pedidos</title>
   <meta name="theme-color" content="#e67e22">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -51,7 +51,7 @@
       <div id="contenido-reportes"></div>
       <div class="backup-box">
         <h3>💾 Copia de Seguridad</h3>
-        <p>Guarda o recupera todos tus pedidos y productos (util para pasar a la tablet).</p>
+        <p>Guarda o recupera todos tus pedidos y productos.</p>
         <button class="btn-principal" onclick="exportarDatos()">📥 Exportar (crear respaldo)</button>
         <input type="file" id="archivo-importar" accept=".json" style="display:none" onchange="importarDatos(this)">
         <button class="btn-secundario" onclick="document.getElementById('archivo-importar').click()">📤 Importar (cargar respaldo)</button>
@@ -59,7 +59,7 @@
     </section>
   </main>
 
-  <!-- ===== VENTANA DE ABONO (modal de la app) ===== -->
+  <!-- ===== VENTANA DE ABONO (modal) ===== -->
   <div id="modal-abono" class="modal-fondo">
     <div class="modal-caja">
       <h3>💵 Registrar abono</h3>
@@ -79,11 +79,18 @@
     </div>
   </div>
 
-  <script>
-    var archivos = ["db.js", "pedidos.js", "productos.js", "clientes.js", "reportes.js", "backup.js", "app.js"];
-    archivos.forEach(function (nombre) {
-      document.write('<scr' + 'ipt src="js/' + nombre + '"><\/scr' + 'ipt>');
-    });
-  </script>
+  <!-- ===== FIREBASE (la nube) ===== -->
+  https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js
+
+  <!-- ===== MODULOS DE LA APP (en orden) ===== -->
+  js/firebase.js
+  <script src="js/db.js"></script>
+  <script src="js/pedidos.js"></script>
+  <script src="js/productos.js"></script>
+  <script src="js/clientes.js"></script>
+  <script src="js/reportes.js"></script>
+  js/backup.js
+  <script src="js/app.js"></script>
 </body>
 </html>
