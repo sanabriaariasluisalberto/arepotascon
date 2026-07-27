@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AREPOTASCON- Gestion de Pedidos</title>
+  <meta name="theme-color" content="#e67e22">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>&#129747; AREPOTASCON</h1>
+    <nav>
+      <button class="tab-btn" data-tab="pedidos">&#129534; Pedidos</button>
+      <button class="tab-btn active" data-tab="nuevo">&#10133; Nuevo Pedido</button>
+      <button class="tab-btn" data-tab="clientes">&#128101; Clientes</button>
+      <button class="tab-btn" data-tab="productos-tab">&#129747; Productos</button>
+      <button class="tab-btn" data-tab="reportes">&#128202; Reportes</button>
+    </nav>
+  </header>
+  <main>
+    <section id="nuevo" class="tab-content active">
+      <h2>Nuevo Pedido</h2>
+      <label>Nombre del cliente</label>
+      <input type="text" id="cliente" placeholder="Ej: Maria Lopez">
+      <div id="lista-productos-pedido"></div>
+      <div class="total-box"><span>TOTAL:</span><span id="total-pedido">$0</span></div>
+      <button class="btn-principal" onclick="guardarPedido()">&#128190; Guardar Pedido</button>
+      <button class="btn-secundario" onclick="generarResumenWhatsApp()">&#128242; Copiar resumen para WhatsApp</button>
+    </section>
+    <section id="pedidos" class="tab-content">
+      <h2>Pedidos Registrados</h2>
+      <div id="lista-fechas"></div>
+      <div id="detalle-dia"></div>
+    </section>
+    <section id="clientes" class="tab-content">
+      <h2>Clientes</h2>
+      <div id="lista-clientes"></div>
+    </section>
+    <section id="productos-tab" class="tab-content">
+      <h2>Mis Productos</h2>
+      <div class="form-producto">
+        <input type="text" id="nuevo-nombre" placeholder="Nombre del producto">
+        <input type="number" id="nuevo-precio" placeholder="Precio (Ej: 15000)">
+        <button class="btn-principal" onclick="agregarProducto()">&#10133; Agregar Producto</button>
+      </div>
+      <div id="lista-productos-admin"></div>
+    </section>
+    <section id="reportes" class="tab-content">
+      <h2>Reportes</h2>
+      <div id="contenido-reportes"></div>
+      <div class="backup-box">
+        <h3>💾 Copia de Seguridad</h3>
+        <p>Guarda o recupera todos tus pedidos y productos (util para pasar a la tablet).</p>
+        <button class="btn-principal" onclick="exportarDatos()">📥 Exportar (crear respaldo)</button>
+        <input type="file" id="archivo-importar" accept=".json" style="display:none" onchange="importarDatos(this)">
+        <button class="btn-secundario" onclick="document.getElementById('archivo-importar').click()">📤 Importar (cargar respaldo)</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== VENTANA DE ABONO (modal de la app) ===== -->
+  <div id="modal-abono" class="modal-fondo">
+    <div class="modal-caja">
+      <h3>💵 Registrar abono</h3>
+      <p id="modal-info"></p>
+      <label>¿Cuanto abona ahora?</label>
+      <input type="text" id="modal-monto" inputmode="numeric" oninput="formatearPesosInput(this)" placeholder="$0">
+      <label>¿Por que medio?</label>
+      <div class="modal-metodos">
+        <button type="button" class="btn-metodo" data-metodo="Efectivo" onclick="seleccionarMetodo(this)">💵 Efectivo</button>
+        <button type="button" class="btn-metodo" data-metodo="Nequi" onclick="seleccionarMetodo(this)">📱 Nequi</button>
+        <button type="button" class="btn-metodo" data-metodo="Daviplata" onclick="seleccionarMetodo(this)">📲 Daviplata</button>
+      </div>
+      <div class="modal-acciones">
+        <button class="btn-principal" onclick="confirmarAbono()">✅ Guardar abono</button>
+        <button class="btn-secundario" onclick="cerrarModalAbono()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var archivos = ["db.js", "pedidos.js", "productos.js", "clientes.js", "reportes.js", "backup.js", "app.js"];
+    archivos.forEach(function (nombre) {
+      document.write('<scr' + 'ipt src="js/' + nombre + '"><\/scr' + 'ipt>');
+    });
+  </script>
+</body>
+</html>
